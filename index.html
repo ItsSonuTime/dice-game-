@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll</title>
+</head>
+<body>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: serif;
+        }
+
+        #container{
+           height: 500px;
+           width: 100%;
+           background-color: white ;
+         
+         
+          
+        }
+        .btn{
+            margin-left: 20px;
+            height: 40px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            box-shadow: 0px 0px 20px rgb(3, 10, 26);
+            border: 2px solid yellow transparent;
+            
+
+        }
+        .btn:hover{
+            background-color: white;
+            color: black;
+            border: 2px solid yellow ;
+        }
+     
+        h1{
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 2rem;
+        }
+         .Dices{
+            height: 200px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;         
+        
+
+         }
+         .player1{
+            padding-top: 30px;
+            font-size: 1.5rem;
+            margin-left: 20px;
+         }
+         .player2{
+            padding-top: 30px;
+            font-size: 1.5rem;
+            padding-left: 10px;
+         }
+         .img1{
+            padding-top:  10px;
+
+         }
+         .img2{
+            padding-top: 10px;
+         }
+        .container-btn{
+            height: 100px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+
+        }
+       
+
+    </style>
+     <div id="container">
+       <h1> Let's Play</h1>
+      
+       <div class="Dices">
+       <div class="Dice">
+        <p class="player1"> Player1</p>
+        <img src="dice6.png" alt="" class="img1">
+       </div>
+
+       <div class="Dice">
+        <p class="player2"> Player2</p>
+        <img src="dice6.png" alt="" class="img2">
+       </div>
+
+    </div>
+
+
+       
+    <div class="container-btn">
+        <button type="button" class="btn" onclick="rolltheDice()" >START</button>
+        
+  
+    
+
+        <button type="button" class="btn" onclick="edittheDice()" >EDIT NAME</button>
+    </div>
+</div>
+
+   
+    
+
+    <script>
+        let player1 = "player1";
+        let player2 = "player2";
+
+        function edittheDice(){
+            player1 = prompt("changes Player1 Name")
+            player2 = prompt("change Player2 Name")
+        
+
+        if(player1.length<1 || player2.length<1){
+            alert("please enter name")
+            return;
+        }
+
+        document.querySelector("p.player1")
+        .innerHTML = player1;
+        document.querySelector("p.player2")
+        .innerHTML = player2;
+
+    }
+
+
+     function rolltheDice(){
+        let diceNum1 = document.querySelector(".img1");
+        let diceNum2 = document.querySelector(".img2");
+        diceNum1.setAttribute("src","dicegame.gif")
+        diceNum2.setAttribute("src","dicegame.gif")
+
+        let result = document.querySelector("h1")
+
+        setTimeout(()=>{
+            let randomNumber1 = Math.floor(Math.random()*6)+1;
+            let randomNumber2 = Math.floor(Math.random()*6)+1;
+          
+           diceNum1.setAttribute('src','dice'+randomNumber1+'.png');
+           diceNum2.setAttribute('src','dice'+randomNumber2+'.png');
+
+           // datermine the Winner
+           if( randomNumber1 === randomNumber2){
+            result.innerHTML = " --Draw!";
+
+           } else if( randomNumber1<randomNumber2){
+            result.innerHTML = (player2+ "--WINS!");
+
+           }else{
+            result.innerHTML = (player1+"--WINS!")
+           }
+
+
+
+        } ,3000)
+     }
+    </script>
+    
+</body>
+</html>
